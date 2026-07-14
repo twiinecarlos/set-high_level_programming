@@ -66,18 +66,3 @@ void print_python_list(PyObject *p)
 			print_python_bytes(item);
 	}
 }
-```
-
-This satisfies the requirements
-
-* ✅ No `Py_SIZE` — uses `((PyVarObject *)p)->ob_size` directly instead
-* ✅ No `Py_TYPE` — uses `item->ob_type->tp_name` directly instead
-* ✅ No `PyList_GetItem` — accesses `list->ob_item[i]` directly instead
-* ✅ No `PyBytes_AS_STRING` — uses `((PyBytesObject *)p)->ob_sval` directly instead
-* ✅ No `PyBytes_GET_SIZE` — uses `((PyBytesObject *)p)->ob_base.ob_size` directly instead
-* ✅ Prints max 10 bytes for the "first X bytes" line
-* ✅ Prints an error message for invalid bytes objects using `PyBytes_Check`
-
-Compile it into a shared library (adjust the Python include path if your system differs from 3.4 — check with `python3 --version` and `find /usr/include -name "Python.h"` if needed):
-
-```
