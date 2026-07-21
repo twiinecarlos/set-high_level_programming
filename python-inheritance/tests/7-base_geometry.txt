@@ -1,0 +1,58 @@
+The ``7-base_geometry`` module
+================================
+
+Using ``BaseGeometry``
+-----------------------
+
+Import BaseGeometry class
+
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> bg = BaseGeometry()
+
+Test ``area``
+
+    >>> bg.area()
+    Traceback (most recent call last):
+    Exception: area() is not implemented
+
+Test ``integer_validator`` with valid values
+
+    >>> bg.integer_validator("my_int", 12)
+    >>> bg.integer_validator("width", 89)
+    >>> bg.integer_validator("height", 1)
+
+Test ``integer_validator`` with a non-integer value
+
+    >>> bg.integer_validator("name", "John")
+    Traceback (most recent call last):
+    TypeError: name must be an integer
+
+Test ``integer_validator`` with a float value
+
+    >>> bg.integer_validator("width", 3.14)
+    Traceback (most recent call last):
+    TypeError: width must be an integer
+
+Test ``integer_validator`` with a boolean value
+
+    >>> bg.integer_validator("flag", True)
+    Traceback (most recent call last):
+    TypeError: flag must be an integer
+
+Test ``integer_validator`` with zero
+
+    >>> bg.integer_validator("age", 0)
+    Traceback (most recent call last):
+    ValueError: age must be greater than 0
+
+Test ``integer_validator`` with a negative value
+
+    >>> bg.integer_validator("distance", -4)
+    Traceback (most recent call last):
+    ValueError: distance must be greater than 0
+
+Test ``integer_validator`` with None
+
+    >>> bg.integer_validator("value", None)
+    Traceback (most recent call last):
+    TypeError: value must be an integer
