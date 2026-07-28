@@ -2,7 +2,7 @@
 
 This repository contains solutions to ALX/Holberton School's high-level
 programming projects, covering Python fundamentals, data structures,
-object-oriented programming, and object model internals.
+object-oriented programming, object model internals, and inheritance.
 
 ## Directories
 
@@ -12,6 +12,8 @@ object-oriented programming, and object model internals.
 - `python-classes` - object-oriented programming with classes
 - `python-more_classes` - advanced class features (repr, del, class attributes)
 - `python-everything_is_object` - Python's object model
+- `python-inheritance` - inheritance, polymorphism, and introspection
+- `python-input_output` - reading and writing files, JSON serialization
 
 ## Author
 
