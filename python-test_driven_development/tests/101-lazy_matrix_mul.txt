@@ -1,0 +1,35 @@
+The ``101-lazy_matrix_mul`` module
+=====================================
+
+Using ``lazy_matrix_mul``
+----------------------------
+
+Import lazy_matrix_mul function
+
+    >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+Test with two square matrices
+
+    >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+    [[ 7 10]
+     [15 22]]
+
+Test with non-square matrices
+
+    >>> print(lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
+    [[13 16]]
+
+Test with floats
+
+    >>> print(lazy_matrix_mul([[1.5, 2.5]], [[1], [2]]))
+    [[6.5]]
+
+Test with a single-element matrix
+
+    >>> print(lazy_matrix_mul([[3]], [[4]]))
+    [[12]]
+
+Test with negative numbers
+
+    >>> print(lazy_matrix_mul([[-1, 2]], [[3], [-4]]))
+    [[-11]]
