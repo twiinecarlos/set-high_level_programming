@@ -1,0 +1,72 @@
+The ``100-matrix_mul`` module
+================================
+
+Using ``matrix_mul``
+----------------------
+
+Import matrix_mul function
+
+    >>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+Test with two square matrices
+
+    >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+    [[7, 10], [15, 22]]
+
+Test with non-square matrices
+
+    >>> matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+    [[13, 16]]
+
+Test with m_a not a list
+
+    >>> matrix_mul("School", [[1, 2]])
+    Traceback (most recent call last):
+    TypeError: m_a must be a list
+
+Test with m_b not a list
+
+    >>> matrix_mul([[1, 2]], "School")
+    Traceback (most recent call last):
+    TypeError: m_b must be a list
+
+Test with m_a not a list of lists
+
+    >>> matrix_mul([1, 2], [[1, 2]])
+    Traceback (most recent call last):
+    TypeError: m_a must be a list of lists
+
+Test with m_a empty
+
+    >>> matrix_mul([], [[1, 2]])
+    Traceback (most recent call last):
+    ValueError: m_a can't be empty
+
+Test with m_a empty (nested form)
+
+    >>> matrix_mul([[]], [[1, 2]])
+    Traceback (most recent call last):
+    ValueError: m_a can't be empty
+
+Test with a non-numeric element in m_a
+
+    >>> matrix_mul([[1, "a"]], [[1, 2]])
+    Traceback (most recent call last):
+    TypeError: m_a should contain only integers or floats
+
+Test with m_a rows of different sizes
+
+    >>> matrix_mul([[1, 2], [3]], [[1, 2]])
+    Traceback (most recent call last):
+    TypeError: each row of m_a must be of the same size
+
+Test with incompatible dimensions
+
+    >>> matrix_mul([[1, 2], [3, 4]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    Traceback (most recent call last):
+    ValueError: m_a and m_b can't be multiplied
+
+Test with floats
+
+    >>> matrix_mul([[1.5, 2.5]], [[1], [2]])
+    [[6.5]]
