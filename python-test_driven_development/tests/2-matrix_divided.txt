@@ -1,3 +1,76 @@
+The ``2-matrix_divided`` module
+=================================
+
+Using ``matrix_divided``
+--------------------------
+
+Import matrix_divided function
+
+    >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+Test with a basic integer matrix
+
+    >>> matrix = [[1, 2, 3], [4, 5, 6]]
+    >>> matrix_divided(matrix, 3)
+    [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+Test that the original matrix is unchanged
+
+    >>> matrix
+    [[1, 2, 3], [4, 5, 6]]
+
+Test with a matrix of floats
+
+    >>> matrix_divided([[1.5, 2.5], [3.5, 4.5]], 2)
+    [[0.75, 1.25], [1.75, 2.25]]
+
+Test with a float divisor
+
+    >>> matrix_divided([[10, 20]], 3.0)
+    [[3.33, 6.67]]
+
+Test with division by zero
+
+    >>> matrix_divided([[1, 2], [3, 4]], 0)
+    Traceback (most recent call last):
+    ZeroDivisionError: division by zero
+
+Test with a non-numeric divisor
+
+    >>> matrix_divided([[1, 2], [3, 4]], "School")
+    Traceback (most recent call last):
+    TypeError: div must be a number
+
+Test with a matrix that isn't a list
+
+    >>> matrix_divided("School", 2)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Test with rows of different sizes
+
+    >>> matrix_divided([[1, 2, 3], [4, 5]], 2)
+    Traceback (most recent call last):
+    TypeError: Each row of the matrix must have the same size
+
+Test with a non-numeric element in the matrix
+
+    >>> matrix_divided([[1, 2, "School"]], 2)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Test with an empty matrix
+
+    >>> matrix_divided([], 2)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Test with a matrix whose rows aren't lists
+
+    >>> matrix_divided([1, 2, 3], 2)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
 Test with a divisor of infinity
 
     >>> matrix_divided([[1, 2, 3], [4, 5, 6]], float("inf"))
