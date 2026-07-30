@@ -49,3 +49,15 @@ Test with both floats
 
     >>> add_integer(1.9, 2.9)
     3
+
+Test with float overflow
+
+    >>> add_integer(float("inf"))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+Test with float NaN
+
+    >>> add_integer(float("nan"))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
