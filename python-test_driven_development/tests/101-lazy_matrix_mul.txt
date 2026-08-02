@@ -28,13 +28,13 @@ Test with m_a not a list of lists (string)
 
     >>> lazy_matrix_mul("ALX", [[5, 6], [7, 8]]) # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
-    _UFuncNoLoopError: mismatch
+    TypeError: mismatch
 
 Test with m_b not a list of lists (string)
 
     >>> lazy_matrix_mul([[5, 6], [7, 8]], "ALX") # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
-    _UFuncNoLoopError: mismatch
+    TypeError: mismatch
 
 Test with m_a empty
 
@@ -52,13 +52,13 @@ Test with a non-numeric element in m_a
 
     >>> lazy_matrix_mul([[5, "6"], [7, 8]], [[5, 6], [7, 8]]) # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
-    ValueError: mismatch
+    TypeError: mismatch
 
 Test with a non-numeric element in m_b
 
     >>> lazy_matrix_mul([[5, 6], [7, 8]], [[5, "6"], [7, 8]]) # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
-    ValueError: mismatch
+    TypeError: mismatch
 
 Test with m_a rows of different sizes
 
@@ -83,4 +83,3 @@ Test with two missing arguments
     >>> lazy_matrix_mul() # doctest: +ELLIPSIS
     Traceback (most recent call last):
     TypeError: ...lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
-
