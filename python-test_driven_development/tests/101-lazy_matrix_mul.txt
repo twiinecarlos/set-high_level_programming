@@ -24,12 +24,63 @@ Test with floats
     >>> print(lazy_matrix_mul([[1.5, 2.5]], [[1], [2]]))
     [[6.5]]
 
-Test with a single-element matrix
+Test with m_a not a list of lists (string)
 
-    >>> print(lazy_matrix_mul([[3]], [[4]]))
-    [[12]]
+    >>> lazy_matrix_mul("ALX", [[5, 6], [7, 8]]) # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    _UFuncNoLoopError: mismatch
 
-Test with negative numbers
+Test with m_b not a list of lists (string)
 
-    >>> print(lazy_matrix_mul([[-1, 2]], [[3], [-4]]))
-    [[-11]]
+    >>> lazy_matrix_mul([[5, 6], [7, 8]], "ALX") # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    _UFuncNoLoopError: mismatch
+
+Test with m_a empty
+
+    >>> lazy_matrix_mul([[]], [[5, 6], [7, 8]]) # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    ValueError: mismatch
+
+Test with m_b empty
+
+    >>> lazy_matrix_mul([[5, 6], [7, 8]], [[]]) # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    ValueError: mismatch
+
+Test with a non-numeric element in m_a
+
+    >>> lazy_matrix_mul([[5, "6"], [7, 8]], [[5, 6], [7, 8]]) # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    ValueError: mismatch
+
+Test with a non-numeric element in m_b
+
+    >>> lazy_matrix_mul([[5, 6], [7, 8]], [[5, "6"], [7, 8]]) # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    ValueError: mismatch
+
+Test with m_a rows of different sizes
+
+    >>> lazy_matrix_mul([[5, 6, 10], [7, 8]], [[5, 6], [7, 8]]) # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    ValueError: mismatch
+
+Test with incompatible dimensions
+
+    >>> lazy_matrix_mul([[1, 2, 3], [3, 4, 5]], [[1, 2], [3, 4]]) # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    ValueError: mismatch
+
+Test with one missing argument
+
+    >>> lazy_matrix_mul([[1, 2]]) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError: ...lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+Test with two missing arguments
+
+    >>> lazy_matrix_mul() # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError: ...lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
