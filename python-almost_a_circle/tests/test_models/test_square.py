@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unittests for the Square class."""
 import unittest
+import os
 from models.square import Square
 from models.rectangle import Rectangle
 
@@ -48,6 +49,26 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(ValueError):
             Square(0)
 
+    def test_x_not_int(self):
+        """Tests that a non-integer x raises TypeError."""
+        with self.assertRaises(TypeError):
+            Square(1, "2")
+
+    def test_y_not_int(self):
+        """Tests that a non-integer y raises TypeError."""
+        with self.assertRaises(TypeError):
+            Square(1, 2, "3")
+
+    def test_x_negative(self):
+        """Tests that a negative x raises ValueError."""
+        with self.assertRaises(ValueError):
+            Square(1, -2)
+
+    def test_y_negative(self):
+        """Tests that a negative y raises ValueError."""
+        with self.assertRaises(ValueError):
+            Square(1, 2, -3)
+
     def test_size_setter(self):
         """Tests that setting size updates both width and height."""
         s = Square(5)
@@ -92,6 +113,20 @@ class TestSquare(unittest.TestCase):
         """Tests that Square inherits from Rectangle."""
         s = Square(1)
         self.assertIsInstance(s, Rectangle)
+
+    def test_save_to_file_none(self):
+        """Tests save_to_file with None writes an empty list."""
+        Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+        os.remove("Square.json")
+
+    def test_save_to_file_empty_list(self):
+        """Tests save_to_file with an empty list."""
+        Square.save_to_file([])
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+        os.remove("Square.json")
 
 
 if __name__ == "__main__":

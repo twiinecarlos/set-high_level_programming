@@ -3,6 +3,7 @@
 import unittest
 import io
 import sys
+import os
 from models.rectangle import Rectangle
 
 
@@ -23,6 +24,30 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(10, 2)
         self.assertEqual(r.x, 0)
         self.assertEqual(r.y, 0)
+
+    def test_two_args(self):
+        """Tests instantiation with only width and height."""
+        r = Rectangle(1, 2)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+        self.assertEqual(r.x, 0)
+        self.assertEqual(r.y, 0)
+
+    def test_three_args(self):
+        """Tests instantiation with width, height, and x."""
+        r = Rectangle(1, 2, 3)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.y, 0)
+
+    def test_four_args(self):
+        """Tests instantiation with width, height, x, and y."""
+        r = Rectangle(1, 2, 3, 4)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.y, 4)
 
     def test_area(self):
         """Tests the area computation."""
@@ -53,6 +78,11 @@ class TestRectangle(unittest.TestCase):
         """Tests that a negative height raises ValueError."""
         with self.assertRaises(ValueError):
             Rectangle(10, -2)
+
+    def test_height_zero(self):
+        """Tests that a height of 0 raises ValueError."""
+        with self.assertRaises(ValueError):
+            Rectangle(1, 0)
 
     def test_x_not_int(self):
         """Tests that a non-integer x raises TypeError."""
@@ -140,6 +170,13 @@ class TestRectangle(unittest.TestCase):
         from models.base import Base
         r = Rectangle(1, 1)
         self.assertIsInstance(r, Base)
+
+    def test_save_to_file_empty_list(self):
+        """Tests save_to_file with an empty list."""
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+        os.remove("Rectangle.json")
 
 
 if __name__ == "__main__":
