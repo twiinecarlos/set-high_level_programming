@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module that defines the Base class."""
 import json
+import csv
 
 
 class Base:
@@ -96,3 +97,44 @@ class Base:
         list_dicts = [obj.to_dictionary() for obj in list_objs]
         with open(filename, "w") as f:
             f.write(cls.to_json_string(list_dicts))
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Writes the CSV representation of a list of objects to a
+        file named <ClassName>.csv."""
+        filename = cls.__name__ + ".csv"
+        if list_objs is None:
+            list_objs = []
+        with open(filename, "w", newline="") as f:
+            writer = csv.writer(f)
+            if cls.__name__ == "Rectangle":
+                for obj in list_objs:
+                    writer.writerow(
+                        [obj.id, obj.width, obj.height, obj.x, obj.y])
+            else:
+                for obj in list_objs:
+                    writer.writerow([obj.id, obj.size, obj.x, obj.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Returns a list of instances loaded from <ClassName>.csv.
+
+        Returns:
+            An empty list if the file doesn't exist, otherwise a list
+            of instances of cls built from the file's content.
+        """
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, "r", newline="") as f:
+                reader = csv.reader(f)
+                list_objs = []
+                if cls.__name__ == "Rectangle":
+                    keys = ["id", "width", "height", "x", "y"]
+                else:
+                    keys = ["id", "size", "x", "y"]
+                for row in reader:
+                    d = {k: int(v) for k, v in zip(keys, row)}
+                    list_objs.append(cls.create(**d))
+                return list_objs
+        except IOError:
+            return []
