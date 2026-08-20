@@ -1,28 +1,22 @@
 #!/usr/bin/python3
-"""Defines the State class and its City relationship."""
+"""Defines the State class and its cities relationship."""
 
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship
 
-
-Base = declarative_base()
+from relationship_city import Base, City
 
 
 class State(Base):
-    """Represents a State stored in the states table."""
+    """Represents a State in the states table."""
 
     __tablename__ = "states"
 
-    id = Column(
-        Integer,
-        primary_key=True,
-        nullable=False,
-        autoincrement=True
-    )
+    id = Column(Integer, primary_key=True)
     name = Column(String(128), nullable=False)
 
     cities = relationship(
         "City",
-        back_populates="state",
+        backref="state",
         cascade="all, delete"
     )

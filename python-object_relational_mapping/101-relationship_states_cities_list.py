@@ -23,14 +23,10 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).order_by(State.id.asc()).all()
-
-    for state in states:
+    for state in session.query(State).order_by(State.id):
         print("{}: {}".format(state.id, state.name))
 
-        cities = sorted(state.cities, key=lambda city: city.id)
-
-        for city in cities:
+        for city in state.cities:
             print("\t{}: {}".format(city.id, city.name))
 
     session.close()
