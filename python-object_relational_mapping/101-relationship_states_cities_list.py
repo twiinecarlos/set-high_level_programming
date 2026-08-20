@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all states and their related cities."""
+"""Lists all State objects and their related City objects."""
 
 import sys
 
@@ -27,7 +27,10 @@ if __name__ == "__main__":
 
     for state in states:
         print("{}: {}".format(state.id, state.name))
-        for city in sorted(state.cities, key=lambda item: item.id):
+
+        cities = sorted(state.cities, key=lambda city: city.id)
+
+        for city in cities:
             print("\t{}: {}".format(city.id, city.name))
 
     session.close()
