@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""Fetches the status of the intranet using urllib."""
+"""Fetches the status of the ALX intranet using urllib."""
 
 import urllib.request
 
 
 if __name__ == "__main__":
     with urllib.request.urlopen(
-        "https://intranet.hbtn.io/status"
+        "https://alx-intranet.hbtn.io/status"
     ) as response:
         body = response.read()
 
