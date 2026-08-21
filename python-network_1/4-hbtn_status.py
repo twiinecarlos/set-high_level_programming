@@ -1,11 +1,18 @@
 #!/usr/bin/python3
-"""Fetches the status of the ALX intranet using requests."""
+"""Fetches the intranet status using requests."""
 
 import requests
 
 
 if __name__ == "__main__":
-    response = requests.get("https://alx-intranet.hbtn.io/status")
+    try:
+        response = requests.get(
+            "https://alx-intranet.hbtn.io/status"
+        )
+    except requests.RequestException:
+        response = requests.get(
+            "https://intranet.hbtn.io/status"
+        )
 
     print("Body response:")
     print("\t- type: {}".format(type(response.text)))
