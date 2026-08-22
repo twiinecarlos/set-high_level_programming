@@ -180,3 +180,40 @@ class Base:
             turt.hideturtle()
 
         turtle.exitonclick()
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draw rectangles and squares using Turtle graphics."""
+        import turtle
+
+        screen = turtle.Screen()
+        screen.title("Rectangles and Squares")
+        screen.setup(width=900, height=700)
+        screen.bgcolor("white")
+
+        pen = turtle.Turtle()
+        pen.speed(0)
+        pen.pensize(2)
+
+        colors = ["red", "blue", "green", "orange", "purple"]
+
+        for index, shape in enumerate(list_rectangles + list_squares):
+            pen.penup()
+            pen.goto(shape.x, -shape.y)
+            pen.setheading(0)
+            pen.pendown()
+
+            pen.color(colors[index % len(colors)])
+            pen.fillcolor(colors[index % len(colors)])
+            pen.begin_fill()
+
+            for _ in range(2):
+                pen.forward(shape.width)
+                pen.right(90)
+                pen.forward(shape.height)
+                pen.right(90)
+
+            pen.end_fill()
+
+        pen.hideturtle()
+        screen.mainloop()
